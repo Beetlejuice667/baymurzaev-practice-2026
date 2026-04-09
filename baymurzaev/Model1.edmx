@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище baymurzaevModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Маршруты">
+          <Key>
+            <PropertyRef Name="ID_маршрута" />
+          </Key>
+          <Property Name="ID_маршрута" Type="int" Nullable="false" />
+          <Property Name="Номер_маршрута" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Тип_сообщения" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Рейсы">
+          <Key>
+            <PropertyRef Name="ID_рейса" />
+          </Key>
+          <Property Name="ID_рейса" Type="int" Nullable="false" />
+          <Property Name="ID_маршрута" Type="int" Nullable="false" />
+          <Property Name="Дата_выхода" Type="date" Nullable="false" />
+          <Property Name="Время_старта" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Состав_рейса">
+          <Key>
+            <PropertyRef Name="ID_рейса" />
+            <PropertyRef Name="ID_транспорта" />
+          </Key>
+          <Property Name="ID_рейса" Type="int" Nullable="false" />
+          <Property Name="ID_транспорта" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Транспорт">
+          <Key>
+            <PropertyRef Name="ID_транспорта" />
+          </Key>
+          <Property Name="ID_транспорта" Type="int" Nullable="false" />
+          <Property Name="Гос_номер" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Марка_модель" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Вместимость" Type="int" />
+        </EntityType>
+        <Association Name="FK_Рейсы_Маршруты">
+          <End Role="Маршруты" Type="Self.Маршруты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Маршруты">
+              <PropertyRef Name="ID_маршрута" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="ID_маршрута" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Состав_рейса_Рейсы">
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="1" />
+          <End Role="Состав_рейса" Type="Self.Состав_рейса" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Рейсы">
+              <PropertyRef Name="ID_рейса" />
+            </Principal>
+            <Dependent Role="Состав_рейса">
+              <PropertyRef Name="ID_рейса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Состав_рейса_Транспорт">
+          <End Role="Транспорт" Type="Self.Транспорт" Multiplicity="1" />
+          <End Role="Состав_рейса" Type="Self.Состав_рейса" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Транспорт">
+              <PropertyRef Name="ID_транспорта" />
+            </Principal>
+            <Dependent Role="Состав_рейса">
+              <PropertyRef Name="ID_транспорта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище baymurzaevModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Маршруты" EntityType="Self.Маршруты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Рейсы" EntityType="Self.Рейсы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Состав_рейса" EntityType="Self.Состав_рейса" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Транспорт" EntityType="Self.Транспорт" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Рейсы_Маршруты" Association="Self.FK_Рейсы_Маршруты">
+            <End Role="Маршруты" EntitySet="Маршруты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Состав_рейса_Рейсы" Association="Self.FK_Состав_рейса_Рейсы">
+            <End Role="Рейсы" EntitySet="Рейсы" />
+            <End Role="Состав_рейса" EntitySet="Состав_рейса" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Состав_рейса_Транспорт" Association="Self.FK_Состав_рейса_Транспорт">
+            <End Role="Транспорт" EntitySet="Транспорт" />
+            <End Role="Состав_рейса" EntitySet="Состав_рейса" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="baymurzaevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Маршруты">
+          <Key>
+            <PropertyRef Name="ID_маршрута" />
+          </Key>
+          <Property Name="ID_маршрута" Type="Int32" Nullable="false" />
+          <Property Name="Номер_маршрута" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Тип_сообщения" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Рейсы" Relationship="Self.FK_Рейсы_Маршруты" FromRole="Маршруты" ToRole="Рейсы" />
+        </EntityType>
+        <EntityType Name="Рейсы">
+          <Key>
+            <PropertyRef Name="ID_рейса" />
+          </Key>
+          <Property Name="ID_рейса" Type="Int32" Nullable="false" />
+          <Property Name="ID_маршрута" Type="Int32" Nullable="false" />
+          <Property Name="Дата_выхода" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Время_старта" Type="Time" Precision="7" />
+          <NavigationProperty Name="Маршруты" Relationship="Self.FK_Рейсы_Маршруты" FromRole="Рейсы" ToRole="Маршруты" />
+          <NavigationProperty Name="Транспорт" Relationship="Self.Состав_рейса" FromRole="Рейсы" ToRole="Транспорт" />
+        </EntityType>
+        <EntityType Name="Транспорт">
+          <Key>
+            <PropertyRef Name="ID_транспорта" />
+          </Key>
+          <Property Name="ID_транспорта" Type="Int32" Nullable="false" />
+          <Property Name="Гос_номер" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Марка_модель" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Вместимость" Type="Int32" />
+          <NavigationProperty Name="Рейсы" Relationship="Self.Состав_рейса" FromRole="Транспорт" ToRole="Рейсы" />
+        </EntityType>
+        <Association Name="FK_Рейсы_Маршруты">
+          <End Role="Маршруты" Type="Self.Маршруты" Multiplicity="1" />
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Маршруты">
+              <PropertyRef Name="ID_маршрута" />
+            </Principal>
+            <Dependent Role="Рейсы">
+              <PropertyRef Name="ID_маршрута" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Состав_рейса">
+          <End Role="Рейсы" Type="Self.Рейсы" Multiplicity="*" />
+          <End Role="Транспорт" Type="Self.Транспорт" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="baymurzaevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Маршруты" EntityType="Self.Маршруты" />
+          <EntitySet Name="Рейсы" EntityType="Self.Рейсы" />
+          <EntitySet Name="Транспорт" EntityType="Self.Транспорт" />
+          <AssociationSet Name="FK_Рейсы_Маршруты" Association="Self.FK_Рейсы_Маршруты">
+            <End Role="Маршруты" EntitySet="Маршруты" />
+            <End Role="Рейсы" EntitySet="Рейсы" />
+          </AssociationSet>
+          <AssociationSet Name="Состав_рейса" Association="Self.Состав_рейса">
+            <End Role="Рейсы" EntitySet="Рейсы" />
+            <End Role="Транспорт" EntitySet="Транспорт" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище baymurzaevModelContainer" CdmEntityContainer="baymurzaevEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="baymurzaevModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Маршруты">
+            <EntityTypeMapping TypeName="baymurzaevModel.Маршруты">
+              <MappingFragment StoreEntitySet="Маршруты">
+                <ScalarProperty Name="ID_маршрута" ColumnName="ID_маршрута" />
+                <ScalarProperty Name="Номер_маршрута" ColumnName="Номер_маршрута" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Тип_сообщения" ColumnName="Тип_сообщения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Рейсы">
+            <EntityTypeMapping TypeName="baymurzaevModel.Рейсы">
+              <MappingFragment StoreEntitySet="Рейсы">
+                <ScalarProperty Name="ID_рейса" ColumnName="ID_рейса" />
+                <ScalarProperty Name="ID_маршрута" ColumnName="ID_маршрута" />
+                <ScalarProperty Name="Дата_выхода" ColumnName="Дата_выхода" />
+                <ScalarProperty Name="Время_старта" ColumnName="Время_старта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Транспорт">
+            <EntityTypeMapping TypeName="baymurzaevModel.Транспорт">
+              <MappingFragment StoreEntitySet="Транспорт">
+                <ScalarProperty Name="ID_транспорта" ColumnName="ID_транспорта" />
+                <ScalarProperty Name="Гос_номер" ColumnName="Гос_номер" />
+                <ScalarProperty Name="Марка_модель" ColumnName="Марка_модель" />
+                <ScalarProperty Name="Вместимость" ColumnName="Вместимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Состав_рейса" TypeName="baymurzaevModel.Состав_рейса" StoreEntitySet="Состав_рейса">
+            <EndProperty Name="Рейсы">
+              <ScalarProperty Name="ID_рейса" ColumnName="ID_рейса" />
+            </EndProperty>
+            <EndProperty Name="Транспорт">
+              <ScalarProperty Name="ID_транспорта" ColumnName="ID_транспорта" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
