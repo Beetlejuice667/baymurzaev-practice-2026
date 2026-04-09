@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ekate\\Desktop\\baymurzaev_sql_c#\\baymurzaev\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB357A9-C46D-4328-A49A-A0A4429D7F10}|baymurzaev\\baymurzaev.csproj|c:\\users\\ekate\\desktop\\baymurzaev_sql_c#\\baymurzaev\\baymurzaev\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB357A9-C46D-4328-A49A-A0A4429D7F10}|baymurzaev\\baymurzaev.csproj|solutionrelative:baymurzaev\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB357A9-C46D-4328-A49A-A0A4429D7F10}|baymurzaev\\baymurzaev.csproj|c:\\users\\ekate\\desktop\\baymurzaev_sql_c#\\baymurzaev\\baymurzaev\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BAB357A9-C46D-4328-A49A-A0A4429D7F10}|baymurzaev\\baymurzaev.csproj|solutionrelative:baymurzaev\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ekate\\Desktop\\baymurzaev_sql_c#\\baymurzaev\\baymurzaev\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "baymurzaev\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ekate\\Desktop\\baymurzaev_sql_c#\\baymurzaev\\baymurzaev\\MainWindow.xaml.cs",
+              "RelativeToolTip": "baymurzaev\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T11:22:08.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ekate\\Desktop\\baymurzaev_sql_c#\\baymurzaev\\baymurzaev\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "baymurzaev\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\ekate\\Desktop\\baymurzaev_sql_c#\\baymurzaev\\baymurzaev\\MainWindow.xaml",
+              "RelativeToolTip": "baymurzaev\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-09T11:22:49.435Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

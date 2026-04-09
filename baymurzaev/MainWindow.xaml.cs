@@ -8,17 +8,34 @@ namespace baymurzaev
         public MainWindow()
         {
             InitializeComponent();
+            // Начальная страница приложения
             MainFrame.Navigate(new autoPage());
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (MainFrame.CanGoBack) MainFrame.GoBack();
+            if (MainFrame.CanGoBack)
+                MainFrame.GoBack();
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
-            BtnBack.Visibility = MainFrame.CanGoBack ? Visibility.Visible : Visibility.Hidden;
+            // Изменение: используем Collapsed вместо Hidden, 
+            // чтобы интерфейс подстраивался под отсутствие кнопки
+            if (MainFrame.CanGoBack)
+            {
+                BtnBack.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnBack.Visibility = Visibility.Collapsed;
+            }
+
+            // Добавим динамическое изменение заголовка окна в зависимости от страницы
+            if (MainFrame.Content is FrameworkElement element)
+            {
+                this.Title = $"ЦОП - {element.Tag ?? "Главная"}";
+            }
         }
     }
 }
